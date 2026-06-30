@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quang Tran — Personal Brand Website
 
-## Getting Started
+Portfolio cá nhân cao cấp, phong cách Apple / Vercel / Linear. Xây bằng **Next.js 16 + React 19 + Tailwind 4 + Framer Motion + Lenis**. Song ngữ Việt/Anh, dark/light mode, SEO đầy đủ.
 
-First, run the development server:
+## Chạy tại máy
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install        # lần đầu
+npm run dev        # mở http://localhost:3000
+npm run build      # build production (kiểm tra lỗi)
+npm start          # chạy bản production sau khi build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Cấu trúc
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/
+    layout.tsx        # fonts, metadata, JSON-LD, theme init
+    page.tsx          # ghép các section
+    globals.css       # design tokens, glass, aurora, animations
+    sitemap.ts robots.ts manifest.ts icon.svg   # SEO
+  components/
+    aurora.tsx        # nền aurora + spotlight theo chuột + grid + noise
+    cursor.tsx        # custom cursor (tự tắt trên mobile)
+    navbar.tsx        # sticky, scroll-spy, toggle theme + ngôn ngữ
+    magnetic-button.tsx
+    reveal.tsx        # animation khi cuộn (fade + blur + stagger)
+    loader.tsx        # màn hình loading có stroke animation
+    theme-provider.tsx
+    smooth-scroll.tsx # Lenis
+    brand-icons.tsx   # icon GitHub/LinkedIn/Facebook (SVG)
+    section-heading.tsx
+    sections/         # hero, about, skills, stats, experience, projects, contact, footer
+  lib/
+    content.ts        # ★ TẤT CẢ NỘI DUNG Ở ĐÂY (song ngữ)
+    i18n.tsx          # cơ chế chuyển VI/EN
+legacy/               # bản prototype HTML cũ (có thể xóa)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Sửa nội dung — chỉ cần 1 file
 
-## Learn More
+Mở **`src/lib/content.ts`**. Toàn bộ chữ nghĩa nằm ở đây, mỗi mục có dạng `{ vi: "...", en: "..." }`. Sửa là xong, không cần đụng vào code component.
 
-To learn more about Next.js, take a look at the following resources:
+Cần đổi:
+- **hero**: tên, các vai trò (typing animation), tagline.
+- **stats**: số liệu (20+ dự án, 500+ scripts...).
+- **about**: đoạn giới thiệu + timeline (2022→2026).
+- **skills**: danh sách kỹ năng, số năm, số dự án.
+- **experience**: công ty, vị trí, mô tả.
+- **projects**: tên, mô tả, tags, link demo/code, màu gradient (`c1`, `c2`).
+- **contact.email** và **socials**: đổi `hello@yourdomain.com` và link GitHub/LinkedIn/Facebook.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Đổi domain trong SEO
+Tìm và thay `https://yourdomain.com` trong các file:
+`src/app/layout.tsx`, `src/app/sitemap.ts`, `src/app/robots.ts`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Form liên hệ (hiện đang là demo)
+File `src/components/sections/contact.tsx` — chỗ `await new Promise(...)` là giả lập gửi. Để gửi email thật, nối với **EmailJS** hoặc **Resend** (tạo API route `src/app/api/contact/route.ts` rồi `fetch` tới đó).
 
-## Deploy on Vercel
+## Deploy lên Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Cách A — qua GitHub (khuyến nghị)
+```bash
+git add -A
+git commit -m "feat: premium portfolio"
+# tạo repo trên GitHub rồi:
+git remote add origin <repo-url>
+git push -u origin main
+```
+Vào https://vercel.com → **Add New → Project** → import repo. Vercel tự nhận Next.js → **Deploy**. Mỗi lần push sau này sẽ tự deploy lại.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Cách B — Vercel CLI
+```bash
+npm i -g vercel
+vercel          # deploy preview
+vercel --prod   # deploy chính thức
+```
+
+## Trỏ domain `tranquang.bio` (mua tại WordPress.com) vào Vercel
+
+1. Trong project trên Vercel → **Settings → Domains** → nhập `tranquang.bio` → **Add**. Thêm tiếp `www.tranquang.bio`.
+2. Vào **WordPress.com → Upgrades → Domains → tranquang.bio → DNS records** (hoặc "Manage DNS / Name servers") và thêm:
+   - Bản ghi **A**: host `@` → `76.76.21.21`
+   - Bản ghi **CNAME**: host `www` → `cname.vercel-dns.com`
+3. Chờ DNS cập nhật (15 phút–vài giờ). Vercel tự cấp HTTPS miễn phí.
+
+> Lưu ý: domain phải đang ở chế độ "DNS records" của WordPress.com (không phải point sang WordPress site). Nếu WordPress.com cho phép, có thể đổi **nameserver** sang Vercel (`ns1.vercel-dns.com`, `ns2.vercel-dns.com`) để Vercel quản lý DNS — nhưng cách thêm A + CNAME ở trên đơn giản và đủ dùng.
+
+## Checklist trước khi public
+- [ ] Đã sửa hết nội dung trong `content.ts`
+- [x] Đã đổi domain `tranquang.bio` ở layout/sitemap/robots
+- [ ] Đã nối form liên hệ với email thật
+- [ ] Thêm ảnh OG (`public/og.png`, 1200×630) và khai báo trong `layout.tsx` → `openGraph.images`
+- [ ] `npm run build` không lỗi

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Personal brand website - Developer Portfolio" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Your Name — Software Engineer</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Your Name — Software Engineer" />
+  <meta property="og:description" content="Personal portfolio of Your Name, a software engineer." />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon (emoji as favicon - đổi sau nếu muốn) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="#home" class="nav__logo">
+        <span class="logo-dot"></span>
+        <span>YourName</span>
+      </a>
+      <nav class="nav__links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="container hero__inner">
+        <div class="hero__content reveal">
+          <span class="badge">
+            <span class="pulse"></span>
+            Available for new projects
+          </span>
+          <h1 class="hero__title">
+            Xin chào, mình là <span class="gradient">Your Name</span>
+          </h1>
+          <p class="hero__subtitle">
+            Software Engineer chuyên xây dựng các sản phẩm web hiện đại, hiệu năng cao và trải nghiệm người dùng tuyệt vời.
+          </p>
+          <div class="hero__cta">
+            <a href="#projects" class="btn btn--primary">Xem dự án →</a>
+            <a href="#contact" class="btn btn--ghost">Liên hệ</a>
+          </div>
+          <div class="hero__stats">
+            <div><strong>5+</strong><span>Năm kinh nghiệm</span></div>
+            <div><strong>30+</strong><span>Dự án hoàn thành</span></div>
+            <div><strong>10+</strong><span>Khách hàng hài lòng</span></div>
+          </div>
+        </div>
+        <div class="hero__visual reveal">
+          <div class="avatar-wrap">
+            <div class="avatar-glow"></div>
+            <div class="avatar">
+              <!-- Thay bằng ảnh của bạn: <img src="avatar.jpg" alt="Your Name"> -->
+              <span>YN</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">About</span>
+          <h2>Một chút về mình</h2>
+        </div>
+        <div class="about">
+          <div class="about__text reveal">
+            <p>
+              Mình là một software engineer với hơn 5 năm kinh nghiệm trong việc xây dựng các sản phẩm web và mobile.
+              Mình đam mê thiết kế hệ thống sạch, code dễ bảo trì và trải nghiệm người dùng mượt mà.
+            </p>
+            <p>
+              Hiện tại mình tập trung vào full-stack development với TypeScript, React và Node.js,
+              đồng thời quan tâm tới performance, accessibility và developer experience.
+            </p>
+            <a href="#contact" class="link-arrow">Cùng làm việc nhé →</a>
+          </div>
+          <div class="about__skills reveal">
+            <h3>Tech mình thường dùng</h3>
+            <div class="skills">
+              <span class="chip">TypeScript</span>
+              <span class="chip">React</span>
+              <span class="chip">Next.js</span>
+              <span class="chip">Node.js</span>
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">Docker</span>
+              <span class="chip">AWS</span>
+              <span class="chip">Tailwind CSS</span>
+              <span class="chip">Python</span>
+              <span class="chip">Go</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section section--alt">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Projects</span>
+          <h2>Một vài dự án nổi bật</h2>
+        </div>
+
+        <div class="projects">
+          <article class="project reveal">
+            <div class="project__media" style="--c1:#6366f1;--c2:#8b5cf6">
+              <span>01</span>
+            </div>
+            <div class="project__body">
+              <h3>Tên dự án 1</h3>
+              <p>Mô tả ngắn gọn về dự án, vấn đề bạn giải quyết, và giá trị mang lại cho người dùng.</p>
+              <div class="project__tags">
+                <span>Next.js</span><span>TypeScript</span><span>Prisma</span>
+              </div>
+              <div class="project__links">
+                <a href="#" target="_blank" rel="noopener">Live →</a>
+                <a href="#" target="_blank" rel="noopener">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project__media" style="--c1:#06b6d4;--c2:#3b82f6">
+              <span>02</span>
+            </div>
+            <div class="project__body">
+              <h3>Tên dự án 2</h3>
+              <p>Mô tả ngắn gọn. Tập trung vào kết quả (số liệu nếu có) thay vì liệt kê công nghệ.</p>
+              <div class="project__tags">
+                <span>React</span><span>Node.js</span><span>PostgreSQL</span>
+              </div>
+              <div class="project__links">
+                <a href="#" target="_blank" rel="noopener">Live →</a>
+                <a href="#" target="_blank" rel="noopener">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project__media" style="--c1:#f59e0b;--c2:#ef4444">
+              <span>03</span>
+            </div>
+            <div class="project__body">
+              <h3>Tên dự án 3</h3>
+              <p>Mô tả ngắn gọn. Nên có 1-2 câu, đủ thuyết phục để người xem muốn click vào xem chi tiết.</p>
+              <div class="project__tags">
+                <span>Go</span><span>Docker</span><span>AWS</span>
+              </div>
+              <div class="project__links">
+                <a href="#" target="_blank" rel="noopener">Live →</a>
+                <a href="#" target="_blank" rel="noopener">Code</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact reveal">
+          <span class="eyebrow">Contact</span>
+          <h2>Cùng xây thứ gì đó tuyệt vời</h2>
+          <p>Mình luôn sẵn sàng cho các cơ hội thú vị. Hãy gửi mình một dòng nhé!</p>
+
+          <a href="mailto:hello@yourdomain.com" class="email-cta">
+            hello@yourdomain.com
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+          </a>
+
+          <div class="socials">
+            <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.11 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0H5a5 5 0 0 0-5 5v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM8 19H5V8h3v11zM6.5 6.7a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zM20 19h-3v-5.6c0-3.37-4-3.11-4 0V19h-3V8h3v1.77c1.4-2.59 7-2.78 7 2.48V19z"/></svg>
+            </a>
+            <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X / Twitter">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2H21.5l-7.5 8.57L23 22h-7.07l-5.54-7.18L4.1 22H.84l8.03-9.17L1 2h7.24l5.01 6.62L18.24 2zm-1.24 18h1.93L7.1 4H5.04l11.96 16z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> Your Name. Made with ❤ in Vietnam.</span>
+      <a href="#home">Lên đầu trang ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
