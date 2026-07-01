@@ -12,7 +12,7 @@ export function Experience() {
   const e = content.experience;
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 70%", "end 60%"] });
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <section id="experience" className="py-32">
@@ -20,17 +20,16 @@ export function Experience() {
         <SectionHeading eyebrow={t(e.eyebrow, lang)} title={t(e.title, lang)} />
 
         <div ref={ref} className="relative ml-2 max-w-3xl">
-          {/* track */}
+          {/* Track */}
           <div className="absolute bottom-0 left-0 top-0 w-px bg-[var(--color-border-strong)]" />
-          {/* animated fill */}
+          {/* Animated fill - uses scaleY for GPU acceleration */}
           <motion.div
-            style={{ height: lineHeight }}
-            className="absolute left-0 top-0 w-px"
-            // gradient fill
+            style={{ scaleY, transformOrigin: "top", willChange: "transform" }}
+            className="absolute left-0 top-0 h-full w-px"
           >
             <div
               className="h-full w-px"
-              style={{ background: "linear-gradient(var(--color-blue), var(--color-purple), var(--color-cyan))" }}
+              style={{ background: "linear-gradient(180deg, var(--color-blue), var(--color-cyan))" }}
             />
           </motion.div>
 
@@ -40,11 +39,11 @@ export function Experience() {
                 <div className="relative pl-10">
                   <span
                     className="absolute left-[-5px] top-1.5 h-3 w-3 rounded-full ring-4 ring-[var(--color-bg)]"
-                    style={{ background: "var(--color-cyan)", boxShadow: "0 0 14px var(--color-cyan)" }}
+                    style={{ background: "var(--color-cyan)", boxShadow: "0 0 12px var(--color-cyan)" }}
                   />
-                  <span className="font-[var(--font-mono)] text-sm text-[var(--color-text-dim)]">{item.period}</span>
-                  <h3 className="mt-1 font-[var(--font-display)] text-xl font-semibold">{t(item.role, lang)}</h3>
-                  <p className="text-sm font-medium text-[var(--color-purple)]">{item.company}</p>
+                  <span className="font-[var(--font-mono)] text-sm text-[var(--color-text-muted)]">{item.period}</span>
+                  <h3 className="mt-1 font-[var(--font-display)] text-xl font-semibold tracking-tight">{t(item.role, lang)}</h3>
+                  <p className="text-sm font-medium text-[var(--color-blue)]">{item.company}</p>
                   <p className="mt-2 text-[var(--color-text-muted)]">{t(item.desc, lang)}</p>
                 </div>
               </Reveal>

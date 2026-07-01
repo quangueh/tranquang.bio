@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useSyncExternalStore } from "react";
 import type { Lang } from "./content";
 
 type LangContextType = {
@@ -11,16 +11,24 @@ type LangContextType = {
 
 const LangContext = createContext<LangContextType | null>(null);
 
-export function LangProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("vi");
+function useLangSnapshot(): Lang {
+  return useSyncExternalStore(
+    (cb) => {
+      window.addEventListener("storage", cb);
+      return () => window.removeEventListener("storage", cb);
+    },
+    () => {
+      const saved = localStorage.getItem("lang");
+      return saved === "vi" || saved === "en" ? saved : "vi";
+    },
+    () => "vi"
+  );
+}
 
-  useEffect(() => {
-    const saved = localStorage.getItem("lang") as Lang | null;
-    if (saved === "vi" || saved === "en") setLangState(saved);
-  }, []);
+export function LangProvider({ children }: { children: React.ReactNode }) {
+  const lang = useLangSnapshot();
 
   const setLang = (l: Lang) => {
-    setLangState(l);
     localStorage.setItem("lang", l);
     document.documentElement.lang = l;
   };

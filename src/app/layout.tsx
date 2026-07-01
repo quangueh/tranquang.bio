@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { Cursor } from "@/components/cursor";
 
-const inter = Inter({ variable: "--font-inter", subsets: ["latin", "vietnamese"], display: "swap" });
-const display = Space_Grotesk({ variable: "--font-display", subsets: ["latin"], display: "swap" });
-const mono = JetBrains_Mono({ variable: "--font-mono", subsets: ["latin"], display: "swap" });
+const geistSans = Geist({ variable: "--font-geist", subsets: ["latin", "latin-ext"], display: "swap" });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
+const spaceGrotesk = Space_Grotesk({ variable: "--font-space-grotesk", subsets: ["latin"], display: "swap" });
 
 const siteUrl = "https://tranquang.bio";
 
@@ -30,11 +30,13 @@ export const metadata: Metadata = {
     title: "Quang Tran — ERP Developer & AI Engineer",
     description: "ERP Developer, AI Engineer, SQL Expert and Automation Builder.",
     siteName: "Quang Tran",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Quang Tran" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Quang Tran — ERP Developer & AI Engineer",
     description: "ERP Developer, AI Engineer, SQL Expert and Automation Builder.",
+    images: ["/og.png"],
   },
   robots: { index: true, follow: true },
   alternates: { canonical: siteUrl },
@@ -48,7 +50,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="vi" suppressHydrationWarning className={`${inter.variable} ${display.variable} ${mono.variable}`}>
+    <html lang="vi" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable}`}>
       <head>
         <script
           dangerouslySetInnerHTML={{

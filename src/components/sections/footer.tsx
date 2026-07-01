@@ -19,9 +19,9 @@ export function Footer() {
     <footer className="border-t border-[var(--color-border)] py-10">
       <div className="container-x flex flex-col items-center justify-between gap-6 sm:flex-row">
         <div className="text-center sm:text-left">
-          <p className="font-[var(--font-display)] font-semibold">Quang Tran</p>
+          <p className="font-[var(--font-display)] font-semibold tracking-tight">Quang Tran</p>
           <p className="text-sm text-[var(--color-text-muted)]">
-            © 2026 · {t(f.made, lang)}. {t(f.rights, lang)}
+            &copy; 2026 · {t(f.made, lang)}. {t(f.rights, lang)}
           </p>
         </div>
 
@@ -33,7 +33,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="glass grid h-11 w-11 place-items-center rounded-full text-[var(--color-text-muted)] transition-all hover:-translate-y-1 hover:text-[var(--color-purple)]"
+              className="glass grid h-11 w-11 place-items-center rounded-full text-[var(--color-text-muted)] transition-all duration-300 hover:-translate-y-1 hover:text-[var(--color-cyan)] active:scale-90"
             >
               <Icon size={18} />
             </a>
@@ -42,7 +42,7 @@ export function Footer() {
 
         <a
           href="#home"
-          className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+          className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)] active:scale-95"
         >
           <ArrowUp size={15} /> {t(f.top, lang)}
         </a>

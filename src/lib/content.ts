@@ -86,12 +86,12 @@ export const content = {
     title: { vi: "Dự án nổi bật", en: "Featured projects" },
     filters: ["All", "AI", "ERP", "SQL", "Web", "Automation"],
     items: [
-      { title: "ERP Suite", category: "ERP", tags: [".NET", "SQL Server", "React"], desc: { vi: "Hệ thống ERP quản trị toàn diện cho doanh nghiệp vừa.", en: "End-to-end ERP system for mid-sized enterprises." }, demo: "#", code: "#", c1: "#3b82f6", c2: "#8b5cf6" },
-      { title: "AI Document Assistant", category: "AI", tags: ["Python", "LLM", "RAG"], desc: { vi: "Trợ lý AI tra cứu và tóm tắt tài liệu nội bộ.", en: "AI assistant for searching and summarizing internal docs." }, demo: "#", code: "#", c1: "#8b5cf6", c2: "#22d3ee" },
+      { title: "ERP Suite", category: "ERP", tags: [".NET", "SQL Server", "React"], desc: { vi: "Hệ thống ERP quản trị toàn diện cho doanh nghiệp vừa.", en: "End-to-end ERP system for mid-sized enterprises." }, demo: "#", code: "#", c1: "#3b82f6", c2: "#1d4ed8" },
+      { title: "AI Document Assistant", category: "AI", tags: ["Python", "LLM", "RAG"], desc: { vi: "Trợ lý AI tra cứu và tóm tắt tài liệu nội bộ.", en: "AI assistant for searching and summarizing internal docs." }, demo: "#", code: "#", c1: "#1d4ed8", c2: "#22d3ee" },
       { title: "SQL Optimizer", category: "SQL", tags: ["T-SQL", "SQL Server"], desc: { vi: "Bộ công cụ phân tích & tối ưu truy vấn chậm.", en: "Toolkit to analyze and optimize slow queries." }, demo: "#", code: "#", c1: "#22d3ee", c2: "#3b82f6" },
-      { title: "Workflow Automator", category: "Automation", tags: ["Python", "Node.js"], desc: { vi: "Tự động hóa quy trình lặp, tiết kiệm hàng trăm giờ.", en: "Automates repetitive workflows, saving hundreds of hours." }, demo: "#", code: "#", c1: "#6366f1", c2: "#8b5cf6" },
+      { title: "Workflow Automator", category: "Automation", tags: ["Python", "Node.js"], desc: { vi: "Tự động hóa quy trình lặp, tiết kiệm hàng trăm giờ.", en: "Automates repetitive workflows, saving hundreds of hours." }, demo: "#", code: "#", c1: "#2563eb", c2: "#1d4ed8" },
       { title: "Analytics Dashboard", category: "Web", tags: ["Next.js", "TypeScript"], desc: { vi: "Bảng điều khiển dữ liệu thời gian thực.", en: "Real-time data dashboard." }, demo: "#", code: "#", c1: "#3b82f6", c2: "#06b6d4" },
-      { title: "Data Pipeline", category: "Automation", tags: ["Python", "Docker", "Azure"], desc: { vi: "Pipeline ETL ổn định, có giám sát.", en: "Reliable, monitored ETL pipeline." }, demo: "#", code: "#", c1: "#8b5cf6", c2: "#ec4899" },
+      { title: "Data Pipeline", category: "Automation", tags: ["Python", "Docker", "Azure"], desc: { vi: "Pipeline ETL ổn định, có giám sát.", en: "Reliable, monitored ETL pipeline." }, demo: "#", code: "#", c1: "#1d4ed8", c2: "#0891b2" },
     ],
   },
 

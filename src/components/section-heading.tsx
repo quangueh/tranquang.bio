@@ -6,7 +6,7 @@ export function SectionHeading({ eyebrow, title }: { eyebrow: string; title: str
   return (
     <div className="mb-14 max-w-2xl">
       <Reveal>
-        <span className="font-[var(--font-mono)] text-sm uppercase tracking-[0.15em] text-[var(--color-purple)]">
+        <span className="font-[var(--font-mono)] text-sm uppercase tracking-[0.15em] text-[var(--color-cyan)]">
           {eyebrow}
         </span>
       </Reveal>

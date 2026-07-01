@@ -3,9 +3,11 @@
 import { motion, useInView, type Variants } from "framer-motion";
 import { useRef } from "react";
 
+const ease = [0.16, 1, 0.3, 1] as const;
+
 const variants: Variants = {
-  hidden: { opacity: 0, y: 28, filter: "blur(8px)" },
-  show: { opacity: 1, y: 0, filter: "blur(0px)" },
+  hidden: { opacity: 0, y: 24, filter: "blur(6px)", scale: 0.98 },
+  show: { opacity: 1, y: 0, filter: "blur(0px)", scale: 1 },
 };
 
 export function Reveal({
@@ -20,7 +22,7 @@ export function Reveal({
   as?: "div" | "section" | "li" | "span";
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   const MotionTag = motion[as];
 
   return (
@@ -30,14 +32,13 @@ export function Reveal({
       variants={variants}
       initial="hidden"
       animate={inView ? "show" : "hidden"}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.7, delay, ease }}
     >
       {children}
     </MotionTag>
   );
 }
 
-/** Container that staggers its Reveal children. */
 export function RevealGroup({
   children,
   className,
@@ -48,7 +49,7 @@ export function RevealGroup({
   stagger?: number;
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
     <motion.div
       ref={ref}

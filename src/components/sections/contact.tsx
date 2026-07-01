@@ -20,17 +20,16 @@ export function Contact() {
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
   const errors = {
     name: !form.name.trim(),
-    email: !emailValid,
-    message: form.message.trim().length < 10,
+    email: !emailValid && form.email.length > 0,
+    message: form.message.trim().length > 0 && form.message.trim().length < 10,
   };
-  const valid = !errors.name && !errors.email && !errors.message;
+  const valid = !errors.name && !emailValid === false && form.message.trim().length >= 10;
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setTouched({ name: true, email: true, message: true });
-    if (!valid || status !== "idle") return;
+    if (!form.name.trim() || !emailValid || form.message.trim().length < 10 || status !== "idle") return;
     setStatus("sending");
-    // Demo: thay bằng EmailJS/Resend/API thật ở đây.
     await new Promise((r) => setTimeout(r, 1400));
     setStatus("success");
     setForm({ name: "", email: "", company: "", message: "" });
@@ -38,7 +37,7 @@ export function Contact() {
   };
 
   const fieldClass = (err: boolean, key: string) =>
-    `glass w-full rounded-2xl px-4 py-3.5 text-sm outline-none transition-colors placeholder:text-[var(--color-text-dim)] focus:border-[var(--color-purple)] ${
+    `glass input-glow w-full rounded-2xl px-4 py-3.5 text-sm outline-none transition-all placeholder:text-[var(--color-text-dim)] ${
       touched[key] && err ? "border-red-400/60" : ""
     }`;
 
@@ -47,19 +46,19 @@ export function Contact() {
       <div className="container-x">
         <SectionHeading eyebrow={t(c.eyebrow, lang)} title={t(c.title, lang)} />
 
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
           <Reveal>
             <p className="max-w-md text-lg text-[var(--color-text-muted)]">{t(c.subtitle, lang)}</p>
             <a
               href={`mailto:${c.email}`}
-              className="mt-6 inline-block border-b-2 border-transparent font-[var(--font-display)] text-2xl font-bold transition-colors hover:border-[var(--color-purple)] hover:text-[var(--color-purple)] sm:text-3xl"
+              className="link-underline mt-6 inline-block font-[var(--font-display)] text-2xl font-bold transition-colors hover:text-[var(--color-cyan)] sm:text-3xl"
             >
               {c.email}
             </a>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <form onSubmit={onSubmit} className="glass-strong space-y-4 rounded-3xl p-7">
+            <form onSubmit={onSubmit} className="glass-strong space-y-4 rounded-3xl p-6 sm:p-8">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <input
@@ -69,6 +68,9 @@ export function Contact() {
                     onBlur={() => setTouched({ ...touched, name: true })}
                     className={fieldClass(errors.name, "name")}
                   />
+                  {touched.name && errors.name && (
+                    <p className="mt-1.5 text-xs text-red-400">{lang === "vi" ? "Vui lòng nhập họ tên" : "Please enter your name"}</p>
+                  )}
                 </div>
                 <div>
                   <input
@@ -78,6 +80,9 @@ export function Contact() {
                     onBlur={() => setTouched({ ...touched, email: true })}
                     className={fieldClass(errors.email, "email")}
                   />
+                  {touched.email && errors.email && (
+                    <p className="mt-1.5 text-xs text-red-400">{lang === "vi" ? "Email không hợp lệ" : "Invalid email address"}</p>
+                  )}
                 </div>
               </div>
               <input
@@ -86,21 +91,29 @@ export function Contact() {
                 onChange={(e) => setForm({ ...form, company: e.target.value })}
                 className={fieldClass(false, "company")}
               />
-              <textarea
-                placeholder={t(c.form.message, lang)}
-                rows={4}
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                onBlur={() => setTouched({ ...touched, message: true })}
-                className={`${fieldClass(errors.message, "message")} resize-none`}
-              />
+              <div>
+                <textarea
+                  placeholder={t(c.form.message, lang)}
+                  rows={4}
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  onBlur={() => setTouched({ ...touched, message: true })}
+                  className={`${fieldClass(errors.message, "message")} resize-none`}
+                />
+                {touched.message && errors.message && (
+                  <p className="mt-1.5 text-xs text-red-400">{lang === "vi" ? "Tối thiểu 10 ký tự" : "Minimum 10 characters"}</p>
+                )}
+              </div>
 
               <button
                 type="submit"
                 disabled={status !== "idle"}
                 data-cursor
-                className="relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl py-4 text-sm font-semibold text-white transition-transform active:scale-[0.98] disabled:opacity-90"
-                style={{ background: "linear-gradient(120deg, var(--color-blue), var(--color-purple), var(--color-cyan))" }}
+                className="relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl py-4 text-sm font-semibold text-white transition-all duration-300 active:scale-[0.98] disabled:opacity-90"
+                style={{
+                  background: "linear-gradient(135deg, var(--color-blue), var(--color-cyan))",
+                  boxShadow: "0 4px 24px rgba(59, 130, 246, 0.25)",
+                }}
               >
                 <AnimatePresence mode="wait">
                   {status === "idle" && (
